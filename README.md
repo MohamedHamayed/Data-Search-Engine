@@ -13,7 +13,7 @@ Main goal of this project is to make researching process for information about c
 If you want to install this project localy, follow steps below
 1. Download repo on your machine
 ```python
-git clone https://github.com/MohamedHamayed/innoscripta_search_engine.git
+git clone https://github.com/MohamedHamayed/Data-Search-Engine.git
 ```
 2. Setup a virtual environment <br>
 #### Important! This project uses one legacy library which is not supported by new versions of python. <br> Please use python not higher than 3.7 version.

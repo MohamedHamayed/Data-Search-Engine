@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form_container" style="padding: 2vh; text-align: center;">
+<form method="POST" action="/search" class="row">
+        <div class="col">
+          <label class="form-label">Company name*</label>
+          <input type="text" class="form-control" name="company" required>
+          <div id="emailHelp" class="form-text">Enter "Official" company's name</div>
+        </div>
+        <div class="col">
+          <label class="form-label">Country*</label>
+          <input type="text" class="form-control" name="country" required>
+          <div id="emailHelp" class="form-text">Enter country where company registered</div>
+        </div>
+        <div class="col">
+            <label class="form-label">Url</label>
+            <input type="text" class="form-control" name="url">
+            <div id="emailHelp" class="form-text">Enter official website url (not required)</div>
+        </div>
+        <div class="row" style="display: block; margin-top: 2vh;">
+        <button type="submit" class="btn btn-primary" style="width: 20vh;">Find</button>
+        </div>
+    </form>
+</div>
+{% if api == None %}
+{% else %}
+<div><h2>Results for {{input_data.name}} in {{input_data.country}}</h2></div>
+<div class="result-container" 
+style=" display: column;">
+  <div style="display : flex;
+              justify-content: space-around;">
+      <div class="results_data" style="overflow-y: scroll; overflow-y: auto; height: 50vh;">
+        <h3>Products</h3>
+        {% for item in api['Products / Services']['Products'] %}  
+        <p style="margin: 0; padding:0">- {{item}}</p>
+        {% endfor %}
+      </div>
+  
+      <div class="results_data" style="overflow-y: scroll; overflow-y: auto; height: 50vh;">
+        <h3>Services</h3>
+        {% for item in api['Products / Services']['Services'] %}  
+        <p style="margin: 0; padding:0">- {{item}}</p>
+        {% endfor %}
+      </div>
+    <div class="results_data" style="overflow-y: scroll; overflow-y: auto; height: 50vh;">
+      <h3>Keywords</h3>
+      {% for item in api['Keywords'] %}  
+      <p style="margin: 0; padding:0">- {{item}}</p>
+      {% endfor %}
+    </div>
+    <div class="results_data" style="height: 50vh;">
+      <h3>Classification</h3>
+       
+      <p>NAICS code : {{api['Company Classification']['naicsCode']}}</p>
+      <p>NAICS6 codes :</p>
+      {% for item in api['Company Classification']['naics6Codes'] %}
+      <p>- {{item}}</p>
+      {% endfor %}
+      <p>SIC code : {{api['Company Classification']['sicCode']}}</p>
+      <p>SIC4 codes : </p>
+      {% for item in api['Company Classification']['sic4Codes'] %}
+      <p>- {{item}}</p>
+      {% endfor %}
+    </div>
+</div>
+<div>
+    <div class="results_data" style="text-align: center;">
+      <h3>Images</h3>
+      {% for item in api['Images'] %}  
+      <img src={{item}}>
+      {% endfor %}
+    </div>
+</div>
+
+</div>
+{% endif %}
+{% endblock %}

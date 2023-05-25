@@ -43,7 +43,8 @@ You will need:
 
 6. Run "server.py" <br>
 
-It will run an API on localhost:8080
+It will run an API on localhost:8080/extract_info
+You can find documentation for the API on localhost:8080/logs
 
 ## Improving scenario
 
